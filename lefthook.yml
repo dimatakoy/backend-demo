@@ -1,0 +1,12 @@
+# Show only if output fails
+output:
+  - failure
+
+pre-push:
+  commands:
+    prettier-check:
+      run: npx prettier . --check
+    type-check:
+      run: npm run type-check
+    test:
+      run: npm test -- --run
