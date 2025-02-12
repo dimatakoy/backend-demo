@@ -1,0 +1,9 @@
+{
+	"$schema": "https://json.schemastore.org/prettierrc",
+	"plugins": ["prettier-plugin-organize-imports"],
+	"printWidth": 100,
+	"singleQuote": true,
+	"quoteProps": "consistent",
+	"bracketSameLine": true,
+	"organizeImportsSkipDestructiveCodeActions": true
+}

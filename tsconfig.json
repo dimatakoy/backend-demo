@@ -1,0 +1,15 @@
+{
+	"extends": ["@tsconfig/strictest"],
+	"compilerOptions": {
+		"target": "es2023",
+		"lib": ["ES2023"],
+		"types": ["node"],
+
+		"module": "NodeNext",
+		"moduleResolution": "nodenext",
+		"verbatimModuleSyntax": true,
+
+		"outDir": "dist",
+		"sourceMap": true
+	}
+}
