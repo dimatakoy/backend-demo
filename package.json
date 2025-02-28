@@ -16,7 +16,7 @@
 	"dependencies": {
 		"fastify": "^5.2.1",
 		"@prisma/client": "^6.4.1",
-		"@sinclair/typebox": "0.34.20",
+		"@sinclair/typebox": "0.34.28",
 		"@fastify/type-provider-typebox": "^5.1.0"
 	},
 	"devDependencies": {
