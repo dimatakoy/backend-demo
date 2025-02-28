@@ -15,20 +15,20 @@
 	},
 	"dependencies": {
 		"fastify": "^5.2.1",
-		"@prisma/client": "^6.3.1",
-		"@sinclair/typebox": "0.34.20",
+		"@prisma/client": "^6.4.1",
+		"@sinclair/typebox": "0.34.28",
 		"@fastify/type-provider-typebox": "^5.1.0"
 	},
 	"devDependencies": {
-		"@faker-js/faker": "^9.4.0",
+		"@faker-js/faker": "^9.5.1",
 		"@tsconfig/strictest": "2.0.5",
-		"@types/node": "^22.13.1",
-		"prettier": "^3.5.0",
+		"@types/node": "^22.13.5",
+		"prettier": "^3.5.2",
 		"prettier-plugin-organize-imports": "4.1.0",
 		"typescript": "^5.7.3",
-		"vitest": "^3.0.5",
-		"tsx": "^4.19.2",
-		"prisma": "^6.3.1",
-		"lefthook": "^1.10.10"
+		"vitest": "^3.0.7",
+		"tsx": "^4.19.3",
+		"prisma": "^6.4.1",
+		"lefthook": "^1.11.2"
 	}
 }
