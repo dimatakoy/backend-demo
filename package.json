@@ -10,8 +10,8 @@
 		"#tests/*": "./tests/*"
 	},
 	"scripts": {
-		"build": "tsc --project tsconfig.build.json",
-		"type-check": "tsc --noEmit",
+		"build": "tsc --project tsconfig.build.json --erasableSyntaxOnly",
+		"type-check": "tsc --noEmit --erasableSyntaxOnly",
 		"format": "prettier . --write",
 		"start": "node --enable-source-maps ./dist/server.ts",
 		"test": "vitest",

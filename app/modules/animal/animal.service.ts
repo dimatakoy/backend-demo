@@ -1,13 +1,17 @@
 import type { IAnimalRepository, IAnimalService, IPaginationQuery } from './animal.types.js';
 
 export class AnimalService implements IAnimalService {
-	constructor(private readonly repo: IAnimalRepository) {}
+	#repo;
+
+	constructor(repo: IAnimalRepository) {
+		this.#repo = repo;
+	}
 
 	async getById(id: number) {
-		return this.repo.getById(id);
+		return this.#repo.getById(id);
 	}
 
 	async all(query: IPaginationQuery) {
-		return this.repo.all(query);
+		return this.#repo.all(query);
 	}
 }
