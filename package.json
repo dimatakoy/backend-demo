@@ -5,6 +5,10 @@
 		"node": "^22.14",
 		"npm": "~10.9"
 	},
+	"imports": {
+		"#app/*": "./app/*",
+		"#tests/*": "./tests/*"
+	},
 	"scripts": {
 		"build": "tsc --project tsconfig.build.json",
 		"type-check": "tsc --noEmit",

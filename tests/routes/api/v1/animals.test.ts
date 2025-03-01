@@ -1,6 +1,6 @@
+import { createAnimal } from '#tests/factories.js';
+import { animalServiceMock, createTestApp } from '#tests/testApp.js';
 import { expect, test, vi } from 'vitest';
-import { createAnimal } from '../../../factories.js';
-import { animalServiceMock, createTestApp } from '../../../testApp.js';
 
 test('returns all animals', async (ctx) => {
 	const app = await createTestApp(ctx);

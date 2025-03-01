@@ -1,5 +1,5 @@
+import { createTestApp } from '#tests/testApp.js';
 import { expect, test } from 'vitest';
-import { createTestApp } from '../testApp.js';
 
 test('returns ok when app ready', async (ctx) => {
 	const app = await createTestApp(ctx);
