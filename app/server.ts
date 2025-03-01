@@ -1,15 +1,19 @@
 import { PrismaClient } from '@prisma/client';
 import fastify from 'fastify';
-import { createAnimalRepo } from './repos/animal.repo.js';
+import { AnimalRepo } from './modules/animal/animal.repo.js';
+import { AnimalService } from './modules/animal/animal.service.js';
 import { rootApp } from './rootApp.js';
 
-const app = fastify();
 const prisma = new PrismaClient();
 
+const app = fastify();
+
+const deps = {
+	animalService: new AnimalService(new AnimalRepo(prisma)),
+};
+
 app.register(rootApp, {
-	repos: {
-		animalRepo: createAnimalRepo(prisma),
-	},
+	deps,
 });
 
 await app.listen({ port: 3000 });
