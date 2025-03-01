@@ -1,6 +1,5 @@
 import { Type, type FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import type { IAnimalService } from '../../../modules/animal/animal.types.js';
-import { PaginationQuery } from '../../../schema.js';
 
 const AnimalNotFoundError = Type.Object({
 	code: Type.Literal('animal_not_found'),
@@ -9,6 +8,11 @@ const AnimalNotFoundError = Type.Object({
 const Animal = Type.Object({
 	id: Type.Number(),
 	name: Type.String(),
+});
+
+const PaginationQuery = Type.Object({
+	skip: Type.Number({ default: 0 }),
+	take: Type.Number({ default: 100 }),
 });
 
 const AnimalList = Type.Object({
