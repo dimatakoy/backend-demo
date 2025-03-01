@@ -1,5 +1,5 @@
 import { Type, type FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
-import type { AnimalRepo } from '../../../repos/animal.repo.js';
+import type { IAnimalService } from '../../../modules/animal/animal.types.js';
 import { PaginationQuery } from '../../../schema.js';
 
 const AnimalNotFoundError = Type.Object({
@@ -16,10 +16,12 @@ const AnimalList = Type.Object({
 });
 
 type PluginOptions = {
-	repo: AnimalRepo;
+	service: IAnimalService;
 };
 
 export const animalRoutes: FastifyPluginAsyncTypebox<PluginOptions> = async (app, options) => {
+	const { service } = options;
+
 	app.route({
 		method: 'get',
 		url: '/',
@@ -32,7 +34,7 @@ export const animalRoutes: FastifyPluginAsyncTypebox<PluginOptions> = async (app
 		async handler(request, reply) {
 			const { skip, take } = request.query;
 
-			const animals = await options.repo.all({ skip, take });
+			const animals = await service.all({ skip, take });
 
 			return reply.status(200).send({
 				items: animals,
@@ -56,7 +58,7 @@ export const animalRoutes: FastifyPluginAsyncTypebox<PluginOptions> = async (app
 		async handler(request, reply) {
 			const id = request.params.id;
 
-			const animal = await options.repo.getById(id);
+			const animal = await service.getById(id);
 
 			if (!animal) {
 				return reply.status(410).send({

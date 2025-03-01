@@ -1,8 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import { beforeAll, expect, test, vi } from 'vitest';
 import { createAnimal } from '../../../factories.js';
-import { createTestApp } from '../../../helpers.js';
-import { animalRepoStub } from '../../../stubs.js';
+import { animalServiceMock, createTestApp } from '../../../helpers.js';
 
 let app: FastifyInstance;
 
@@ -17,7 +16,7 @@ beforeAll(async () => {
 
 test('returns all animals', async () => {
 	const animals = [createAnimal(), createAnimal()];
-	let mock = vi.spyOn(animalRepoStub, 'all').mockResolvedValue(animals);
+	let mock = vi.spyOn(animalServiceMock, 'all').mockResolvedValue(animals);
 
 	const response = await app.inject({
 		url: `/api/v1/animals`,
@@ -33,7 +32,7 @@ test('returns all animals', async () => {
 
 test('returns known animal', async () => {
 	const animal = createAnimal();
-	let mock = vi.spyOn(animalRepoStub, 'getById').mockResolvedValue(animal);
+	let mock = vi.spyOn(animalServiceMock, 'getById').mockResolvedValue(animal);
 
 	const response = await app.inject({ url: `/api/v1/animals/${animal.id}` });
 
