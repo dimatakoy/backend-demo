@@ -1,23 +1,12 @@
-import type { FastifyInstance } from 'fastify';
-import { beforeAll, expect, test, vi } from 'vitest';
-import { createAnimal } from '../../../factories.js';
-import { createTestApp } from '../../../helpers.js';
-import { animalRepoStub } from '../../../stubs.js';
+import { createAnimal } from '#tests/factories.js';
+import { animalServiceMock, createTestApp } from '#tests/testApp.js';
+import { expect, test, vi } from 'vitest';
 
-let app: FastifyInstance;
+test('returns all animals', async (ctx) => {
+	const app = await createTestApp(ctx);
 
-beforeAll(async () => {
-	app = createTestApp();
-	await app.ready();
-
-	return async () => {
-		await app.close();
-	};
-});
-
-test('returns all animals', async () => {
 	const animals = [createAnimal(), createAnimal()];
-	let mock = vi.spyOn(animalRepoStub, 'all').mockResolvedValue(animals);
+	let mock = vi.spyOn(animalServiceMock, 'all').mockResolvedValue(animals);
 
 	const response = await app.inject({
 		url: `/api/v1/animals`,
@@ -31,9 +20,11 @@ test('returns all animals', async () => {
 	});
 });
 
-test('returns known animal', async () => {
+test('returns known animal', async (ctx) => {
+	const app = await createTestApp(ctx);
+
 	const animal = createAnimal();
-	let mock = vi.spyOn(animalRepoStub, 'getById').mockResolvedValue(animal);
+	let mock = vi.spyOn(animalServiceMock, 'getById').mockResolvedValue(animal);
 
 	const response = await app.inject({ url: `/api/v1/animals/${animal.id}` });
 
@@ -43,7 +34,9 @@ test('returns known animal', async () => {
 	expect(response.json()).toStrictEqual(animal);
 });
 
-test('returns unknown animal', async () => {
+test('returns unknown animal', async (ctx) => {
+	const app = await createTestApp(ctx);
+
 	const unknownAnimal = createAnimal();
 
 	const response = await app.inject({ url: `/api/v1/animals/${unknownAnimal.id}` });

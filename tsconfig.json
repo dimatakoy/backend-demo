@@ -10,6 +10,11 @@
 		"verbatimModuleSyntax": true,
 
 		"outDir": "dist",
-		"sourceMap": true
+		"sourceMap": true,
+
+		"paths": {
+			"#app/*": ["./app/*"],
+			"#tests/*": ["./tests/*"]
+		}
 	}
 }
