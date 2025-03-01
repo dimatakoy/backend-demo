@@ -1,5 +1,6 @@
 {
 	"extends": ["@tsconfig/strictest"],
+	"include": ["./app/**/*.ts", "./tests/**/*.ts"],
 	"compilerOptions": {
 		"target": "es2023",
 		"lib": ["ES2023"],
