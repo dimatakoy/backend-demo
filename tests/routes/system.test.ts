@@ -1,9 +1,8 @@
 import { expect, test } from 'vitest';
-import { createTestApp } from '../helpers.js';
+import { createTestApp } from '../testApp.js';
 
-test('returns ok when app ready', async () => {
-	const app = createTestApp();
-	await app.ready();
+test('returns ok when app ready', async (ctx) => {
+	const app = await createTestApp(ctx);
 
 	const response = await app.inject({ url: '/system/ok' });
 

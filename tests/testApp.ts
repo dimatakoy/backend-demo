@@ -1,5 +1,5 @@
 import fastify from 'fastify';
-import { vi } from 'vitest';
+import { vi, type TestContext } from 'vitest';
 import { rootApp } from '../app/rootApp.js';
 
 export const animalServiceMock = {
@@ -7,8 +7,12 @@ export const animalServiceMock = {
 	all: vi.fn(),
 };
 
-export function createTestApp() {
+export async function createTestApp(testContext: TestContext) {
 	const app = fastify({ logger: false });
+
+	testContext.onTestFinished(async () => {
+		await app.close();
+	});
 
 	const deps = {
 		animalService: animalServiceMock,
@@ -17,6 +21,8 @@ export function createTestApp() {
 	app.register(rootApp, {
 		deps,
 	});
+
+	await app.ready();
 
 	return app;
 }
